@@ -113,3 +113,40 @@ tui() {
     tmux new-session -s "$session" -c "$dir"
   fi
 }
+
+ofile_widget() {
+  local file
+  file=$(fd -t f . | fzf --preview="bat --color=always {}") || return
+  zle accept-line
+  nvim "$file"
+}
+
+zle -N ofile_widget
+bindkey '^[f' ofile_widget
+
+cdf_widget() {
+  local dir
+  dir=$(fd -t d . | fzf) || return
+
+  BUFFER="cd \"$dir\""
+  zle accept-line
+}
+
+zle -N cdf_widget
+bindkey '^[d' cdf_widget
+
+
+
+tui_widget() {
+  local dir
+  dir=$(fd -t d . | fzf) || return
+
+  local session
+  session=$(basename "$dir" | tr '.' '_')
+
+  BUFFER="tmux has-session -t \"$session\" 2>/dev/null && tmux attach -t \"$session\" || tmux new-session -s \"$session\" -c \"$dir\""
+  zle accept-line
+}
+
+zle -N tui_widget
+bindkey '^[t' tui_widget
