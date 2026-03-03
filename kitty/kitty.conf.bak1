@@ -1,0 +1,75 @@
+# ── Font ────────────────────────────────────────────────
+font_family      JetBrainsMono Nerd Font
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size        10.0
+
+# ── Cursor ──────────────────────────────────────────────
+shell_integration no-cursor
+cursor_shape          block
+cursor_blink_interval 0.5
+cursor_stop_blinking_after 10.0
+
+# ── Scrollback ──────────────────────────────────────────
+scrollback_lines 5000
+
+# ── Window ──────────────────────────────────────────────
+window_padding_width    10
+hide_window_decorations yes
+confirm_os_window_close 0
+
+# ── Tab bar ─────────────────────────────────────────────
+tab_bar_style           powerline
+tab_powerline_style     slanted
+
+# ── Catppuccin Mocha colors ─────────────────────────────
+# Soft dark background, warm muted colors — easy on eyes
+
+foreground              #CDD6F4
+background              #1E1E2E
+selection_foreground    #1E1E2E
+selection_background    #F5C2E7
+
+cursor                  #F5E0DC
+cursor_text_color       #1E1E2E
+
+url_color               #F5C2E7
+
+# Black
+color0  #45475A
+color8  #585B70
+
+# Red
+color1  #F38BA8
+color9  #F38BA8
+
+# Green
+color2  #A6E3A1
+color10 #A6E3A1
+
+# Yellow
+color3  #F9E2AF
+color11 #F9E2AF
+
+# Blue
+color4  #89B4FA
+color12 #89B4FA
+
+# Magenta
+color5  #F5C2E7
+color13 #F5C2E7
+
+# Cyan
+color6  #94E2D5
+color14 #94E2D5
+
+# White
+color7  #BAC2DE
+color15 #A6ADC8
+
+# ── Misc ────────────────────────────────────────────────
+enable_audio_bell       no
+visual_bell_duration    0.0
+mouse_hide_wait         3.0
+strip_trailing_spaces   smart
