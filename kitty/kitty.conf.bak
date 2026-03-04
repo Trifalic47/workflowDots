@@ -11,7 +11,7 @@ bold_italic_font auto
 font_size 10.0
 
 # Transparency and dynamic opacity
-background_opacity 0.95
+background_opacity 0.9
 dynamic_background_opacity yes
 
 # Pure black background
@@ -45,6 +45,6 @@ initial_window_width  80c
 initial_window_height 24c
 
 # BEGIN_KITTY_THEME
-# Jackie Brown
+# Everforest Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
