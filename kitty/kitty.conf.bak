@@ -11,7 +11,7 @@
 font_size 10.0
 
 # Transparency and dynamic opacity
-background_opacity 0.90
+background_opacity 0.85
 dynamic_background_opacity yes
 
 # Pure black background (commented out to use theme background)
@@ -59,6 +59,6 @@ bold_italic_font auto
 
 
 # BEGIN_KITTY_THEME
-# Everforest Dark Hard
+# Tokyo Night Night
 include current-theme.conf
 # END_KITTY_THEME
