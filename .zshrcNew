@@ -1,0 +1,152 @@
+# =============================
+# PATH
+# =============================
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
+
+# =============================
+# SPEED & BEHAVIOR
+# =============================
+setopt NO_BEEP
+setopt AUTO_CD
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+
+# =============================
+# HISTORY
+# =============================
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# =============================
+# COLORS (enable %F etc if needed later)
+# =============================
+autoload -U colors && colors
+
+# ~/.zshrc
+
+#eval "$(starship init zsh)"
+#PROMPT='%F{green}%n@%m%f:%F{blue}%~%f$ '
+# Load version control information
+# This tells Zsh to evaluate variables inside the prompt string
+# 1. Load the module
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# 2. Enable substitution (Crucial step!)
+setopt prompt_subst
+
+# 3. Format the git message
+zstyle ':vcs_info:git:*' formats ' git:(%F{red}%b%f)'
+
+# 4. Set the prompt (Use single quotes '')
+PROMPT='%F{red}➜ %f %F{cyan}%~%f${vcs_info_msg_0_} '
+# =============================
+# FIX CTRL+S / CTRL+Q
+# =============================
+stty -ixon
+
+# =============================
+# KEYBINDINGS
+# =============================
+bindkey -e
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+
+# =============================
+# TERMINAL
+# =============================
+export TERM=xterm-256color
+
+# =============================
+# ALIASES
+# =============================
+alias ..='cd ..'
+alias ...='cd ../..'
+alias l='lsd -l'
+alias la='lsd -a'
+alias ll='ls -la'
+alias v='nvim'
+alias sz='source ~/.zshrc'
+alias ls='lsd'
+
+# Git
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+
+# File navigation
+alias ffile='fzf --preview="bat --color=always {}"'
+alias ofile='nvim $(fzf --preview="bat --color=always {}")'
+
+# Safety
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mkdir='mkdir -p'
+alias df='cd $(find . -type d | fzf)'
+# =============================
+# OPTIONAL PLUGINS (if installed)
+# =============================
+[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+[ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# TUI function 
+tui() {
+  local dir
+  dir=$(fd -t d . ~ | fzf) || return
+
+  # Get folder name for session
+  local session
+  session=$(basename "$dir" | tr . _)
+
+  # If session exists, attach
+  if tmux has-session -t "$session" 2>/dev/null; then
+    tmux attach -t "$session"
+  else
+    tmux new-session -s "$session" -c "$dir"
+  fi
+}
+
+ofile_widget() {
+  local file
+  file=$(fd -t f . | fzf --preview="bat --color=always {}") || return
+  zle accept-line
+  nvim "$file"
+}
+
+zle -N ofile_widget
+bindkey '^[f' ofile_widget
+
+cdf_widget() {
+  local dir
+  dir=$(fd -t d . | fzf) || return
+
+  BUFFER="cd \"$dir\""
+  zle accept-line
+}
+
+zle -N cdf_widget
+bindkey '^[d' cdf_widget
+
+
+
+tui_widget() {
+  local dir
+  dir=$(fd -t d . | fzf) || return
+
+  local session
+  session=$(basename "$dir" | tr '.' '_')
+
+  BUFFER="tmux has-session -t \"$session\" 2>/dev/null && tmux attach -t \"$session\" || tmux new-session -s \"$session\" -c \"$dir\""
+  zle accept-line
+}
+
+zle -N tui_widget
+bindkey '^[t' tui_widget
