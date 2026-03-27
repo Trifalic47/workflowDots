@@ -28,7 +28,7 @@ autoload -U colors && colors
 # ~/.zshrc
 
 #eval "$(starship init zsh)"
-#PROMPT='%F{green}%n@%m%f:%F{blue}%~%f$ '
+# PROMPT='%F{green}%n@%m%f:%F{blue}%~%f$ '
 # Load version control information
 # This tells Zsh to evaluate variables inside the prompt string
 # 1. Load the module
@@ -42,6 +42,7 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' formats ' git:(%F{red}%b%f)'
 
 # 4. Set the prompt (Use single quotes '')
+ZSH_THEME="robbyrussell"
 PROMPT='%F{red}➜ %f %F{cyan}%~%f${vcs_info_msg_0_} '
 # =============================
 # FIX CTRL+S / CTRL+Q
@@ -97,7 +98,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# TUI function 
+# TUI function
 tui() {
   local dir
   dir=$(fd -t d . ~ | fzf) || return
@@ -150,3 +151,11 @@ tui_widget() {
 
 zle -N tui_widget
 bindkey '^[t' tui_widget
+# Primeagen-style Short Prompt
+# %c = current folder only | %n = username
+# PROMPT='%{$fg[cyan]%}%n%{$reset_color%} %{$fg_bold[blue]%}git:(%{$fg[red]%}%b%{$fg_bold[blue]%})%{$reset_color%} '
+# PROMPT='%{$fg[cyan]%}%c%{$reset_color%} %{$fg_bold[blue]%}git:(%{$fg[red]%}%b%{$fg_bold[blue]%})%{$reset_color%} '
+
+# Force Alt + Right and Alt + Left to jump words
+bindkey "^[f" forward-word
+bindkey "^[b" backward-word
