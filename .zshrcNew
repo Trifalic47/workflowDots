@@ -1,3 +1,4 @@
+
 # =============================
 # PATH
 # =============================
@@ -42,8 +43,6 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' formats ' git:(%F{red}%b%f)'
 
 # 4. Set the prompt (Use single quotes '')
-ZSH_THEME="robbyrussell"
-PROMPT='%F{red}➜ %f %F{cyan}%~%f${vcs_info_msg_0_} '
 # =============================
 # FIX CTRL+S / CTRL+Q
 # =============================
@@ -159,3 +158,12 @@ bindkey '^[t' tui_widget
 # Force Alt + Right and Alt + Left to jump words
 bindkey "^[f" forward-word
 bindkey "^[b" backward-word
+QT_STYLE_OVERRIDE=Fusion
+alias vlc='vlc -I skins2'
+
+# Prompting things
+
+# PROMPT='%F{red}➜ %f %F{cyan}%~%f${vcs_info_msg_0_} '
+
+
+eval "$(starship init zsh)"

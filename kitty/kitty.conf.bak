@@ -52,8 +52,12 @@ bold_italic_font auto
 # END_KITTY_FONTS
 background_opacity 1.0
 
-
+allow_remote_control no
+shell_integration no-rc
+cursor_blink_interval 0
+notify_on_cmd_finish never
+linux_display_server x11
 # BEGIN_KITTY_THEME
-# Gruvbox Material Dark Hard
+# Adwaita darker
 include current-theme.conf
 # END_KITTY_THEME
