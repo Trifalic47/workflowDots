@@ -45,7 +45,7 @@ map ctrl+d scroll_page_down
 
 
 # BEGIN_KITTY_FONTS
-font_family      family="JetBrainsMono Nerd Font"
+font_family      family="JetBrainsMono Nerd Font Mono"
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
@@ -61,3 +61,35 @@ linux_display_server x11
 # Adwaita darker
 include current-theme.conf
 # END_KITTY_THEME
+
+# background #1b1612
+# foreground #d4c4a8
+# selection_background #3c3836
+# selection_foreground #ebdbb2
+#
+
+
+# background / foreground
+# background #18110c
+# foreground #c9b79c
+# cursor     #e6d5b8
+
+# normal
+# color0  #18110c
+# color1  #b85651
+# color2  #7c8f4e
+# color3  #c18f41
+# color4  #5f819d
+# color5  #9a6e8a
+# color6  #6d8f6f
+# color7  #c9b79c
+
+# bright
+# color8  #3a2f28
+# color9  #d46a5f
+# color10 #9fbf60
+# color11 #e0a84f
+# color12 #7fa6c4
+# color13 #c08cb3
+# color14 #8fbf7f
+# color15 #f2e5bc
