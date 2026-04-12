@@ -8,10 +8,10 @@
     cache_dir: "~/.cache/rmpc",
     volume_step: 2,
     max_fps: 60,
-    scrolloff: 0,
+    scrolloff: 3,
     wrap_navigation: true,
     enable_mouse: true,
-    scroll_amount: 1,
+    scroll_amount: 3,
     enable_config_hot_reload: true,
     status_update_interval_ms: 100,
     keep_state_on_song_change: true,
@@ -35,34 +35,47 @@
     album_art: (
         method: Auto,
         max_size_px: (width: 1200, height: 1200),
+        // Disabled for http/https since YouTube streams have no embedded art
         disabled_protocols: ["http://", "https://"],
         vertical_align: Center,
         horizontal_align: Center,
     ),
     keybinds: (
         global: {
+            // ── YouTube ──────────────────────────────────────
             "S":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/search_yt.sh"], description: "Search YouTube"),
             "V":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/play_video.sh"], description: "Play Video"),
+
+            // ── App ──────────────────────────────────────────
             "q":          Quit,
             "?":          ShowHelp,
             ":":          CommandMode,
-            "z":          ToggleRepeat,
-            "x":          ToggleRandom,
-            "c":          ToggleConsume,
-            "v":          ToggleSingle,
+
+            // ── Playback ─────────────────────────────────────
             "p":          TogglePause,
             "s":          Stop,
             ">":          NextTrack,
             "<":          PreviousTrack,
             "f":          SeekForward,
             "b":          SeekBack,
+
+            // ── Modes ────────────────────────────────────────
+            "z":          ToggleRepeat,
+            "x":          ToggleRandom,
+            "c":          ToggleConsume,
+            "v":          ToggleSingle,
+
+            // ── Volume ───────────────────────────────────────
             ".":          VolumeUp,
             ",":          VolumeDown,
+
+            // ── Navigation ───────────────────────────────────
             "<Tab>":      NextTab,
             "<S-Tab>":    PreviousTab,
         },
     ),
     tabs: [
+        // ── Tab 1: Player ─────────────────────────────────────
         (
             name: " 󰎆 PLAYER ",
             pane: Split(
@@ -87,7 +100,7 @@
                                 ),
                             ],
                         ),
-                    ), 
+                    ),
                     (
                         size: "60%",
                         pane: Split(
@@ -111,6 +124,8 @@
                 ],
             ),
         ),
+
+        // ── Tab 2: Library ────────────────────────────────────
         (
             name: " 󰋋 LIBRARY ",
             borders: "ALL",
@@ -123,29 +138,41 @@
                 ]
             )
         ),
+
+        // ── Tab 3: Files ──────────────────────────────────────
         (
             name: " 󰉋 FILES ",
             borders: "ALL",
             border_symbols: Rounded,
             pane: Pane(Directories)
         ),
+
+        // ── Tab 4: Search ─────────────────────────────────────
         (
             name: " 󰥔 SEARCH ",
             borders: "ALL",
             border_symbols: Rounded,
             pane: Pane(Search)
         ),
+
+        // ── Tab 5: YouTube Stream ─────────────────────────────
         (
             name: " 󰗃 STREAM ",
             borders: "ALL",
             border_symbols: Rounded,
             pane: Pane(Property(
                 content: [
-                    (kind: Text("\n\n\n\n\n\n\n\n"), align: Center),
-                    (kind: Text(" 󰗃  STREAMING MODE "), style: (fg: "#f7768e", modifiers: "Bold"), align: Center),
-                    (kind: Text("\n──────────────────────"), style: (fg: "#414868"), align: Center),
-                    (kind: Text("\n Press 'S' to search YouTube and play any song "), style: (fg: "#c0caf5"), align: Center),
-                    (kind: Text("\n (Song will be added to queue automatically) "), style: (fg: "#7aa2f7", modifiers: "Dim"), align: Center),
+                    (kind: Text("\n\n\n\n\n\n"), align: Center),
+                    (kind: Text(" 󰗃  YOUTUBE STREAMING "), style: (fg: "#f7768e", modifiers: "Bold"), align: Center),
+                    (kind: Text("\n━━━━━━━━━━━━━━━━━━━━━━━━"), style: (fg: "#414868"), align: Center),
+                    (kind: Text("\n\n"), align: Center),
+                    (kind: Text("  S  "), style: (fg: "#1a1b26", bg: "#7aa2f7", modifiers: "Bold"), align: Center),
+                    (kind: Text("  Search & play any YouTube video"), style: (fg: "#c0caf5"), align: Center),
+                    (kind: Text("\n\n"), align: Center),
+                    (kind: Text("  V  "), style: (fg: "#1a1b26", bg: "#9ece6a", modifiers: "Bold"), align: Center),
+                    (kind: Text("  Open video for current song"), style: (fg: "#c0caf5"), align: Center),
+                    (kind: Text("\n\n━━━━━━━━━━━━━━━━━━━━━━━━"), style: (fg: "#414868"), align: Center),
+                    (kind: Text("\n Results cached for 10 minutes for fast re-search "), style: (fg: "#565f89", modifiers: "Italic"), align: Center),
                 ],
                 align: Center
             )),
