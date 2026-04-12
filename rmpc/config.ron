@@ -2,7 +2,7 @@
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
-    address: "127.0.0.1:6600",
+    address: "/home/tanishq/.config/mpd/socket",
     password: None,
     theme: "vibe",
     cache_dir: "~/.cache/rmpc",
@@ -41,6 +41,7 @@
     ),
     keybinds: (
         global: {
+            "S":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/search_yt.sh"], description: "Search YouTube"),
             "V":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/play_video.sh"], description: "Play Video"),
             "q":          Quit,
             "?":          ShowHelp,
@@ -133,6 +134,21 @@
             borders: "ALL",
             border_symbols: Rounded,
             pane: Pane(Search)
+        ),
+        (
+            name: " 󰗃 STREAM ",
+            borders: "ALL",
+            border_symbols: Rounded,
+            pane: Pane(Property(
+                content: [
+                    (kind: Text("\n\n\n\n\n\n\n\n"), align: Center),
+                    (kind: Text(" 󰗃  STREAMING MODE "), style: (fg: "#f7768e", modifiers: "Bold"), align: Center),
+                    (kind: Text("\n──────────────────────"), style: (fg: "#414868"), align: Center),
+                    (kind: Text("\n Press 'S' to search YouTube and play any song "), style: (fg: "#c0caf5"), align: Center),
+                    (kind: Text("\n (Song will be added to queue automatically) "), style: (fg: "#7aa2f7", modifiers: "Dim"), align: Center),
+                ],
+                align: Center
+            )),
         ),
     ],
 )
