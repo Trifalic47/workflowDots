@@ -40,12 +40,21 @@
         vertical_align: Center,
         horizontal_align: Center,
     ),
+
     keybinds: (
         global: {
             // ── YouTube ──────────────────────────────────────
-            "S":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/search_yt.sh"], description: "Search YouTube"),
-            "V":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/play_video.sh"], description: "Play Video"),
+//            "S":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/search_yt.sh"], description: "Search YouTube"),
+ //           "V":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/play_video.sh"], description: "Play Video"),
+"S": ExternalCommand(
+    command: ["bash", "/home/tanishq/.config/rmpc/search_yt.sh"],
+    description: "Search YouTube"
+),
 
+"V": ExternalCommand(
+    command: ["bash", "/home/tanishq/.config/rmpc/play_video.sh"],
+    description: "Play Video"
+),
             // ── App ──────────────────────────────────────────
             "q":          Quit,
             "?":          ShowHelp,
