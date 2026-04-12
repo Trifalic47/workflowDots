@@ -39,6 +39,28 @@
         vertical_align: Center,
         horizontal_align: Center,
     ),
+    keybinds: (
+        global: {
+            "V":          ExternalCommand(command: ["/home/tanishq/.config/rmpc/play_video.sh"], description: "Play Video"),
+            "q":          Quit,
+            "?":          ShowHelp,
+            ":":          CommandMode,
+            "z":          ToggleRepeat,
+            "x":          ToggleRandom,
+            "c":          ToggleConsume,
+            "v":          ToggleSingle,
+            "p":          TogglePause,
+            "s":          Stop,
+            ">":          NextTrack,
+            "<":          PreviousTrack,
+            "f":          SeekForward,
+            "b":          SeekBack,
+            ".":          VolumeUp,
+            ",":          VolumeDown,
+            "<Tab>":      NextTab,
+            "<S-Tab>":    PreviousTab,
+        },
+    ),
     tabs: [
         (
             name: " 󰎆 PLAYER ",

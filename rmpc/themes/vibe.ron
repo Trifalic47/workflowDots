@@ -77,14 +77,14 @@
     song_table_format: [
         (
             prop: (kind: Property(Title),
-                default: (kind: Text("Unknown Track"))
+                default: (kind: Property(Filename))
             ),
             label_prop: (kind: Text("󰎆 TITLE")),
             width: "50%",
         ),
         (
             prop: (kind: Property(Artist), style: (fg: "#7dcfff"),
-                default: (kind: Text("Unknown Artist"))
+                default: (kind: Text("󰠃 UNKNOWN"))
             ),
             label_prop: (kind: Text("󰠃 ARTIST")),
             width: "35%",
@@ -143,6 +143,9 @@
             content: [
                 (kind: Text(" 󰎆 "), style: (fg: "#bb9af7", modifiers: "Bold")),
                 (kind: Property(Song(Title)), style: (fg: "#c0caf5", modifiers: "Bold"), default: (kind: Text("Idle"))),
+                (kind: Transform(Replace(content: (kind: Property(Song(Filename))), replacements: [
+                    (match: r".*\.mp4$", replace: (kind: Text("\n 󰐊 VIDEO AVAILABLE "), style: (fg: "#9ece6a", modifiers: "Bold"))),
+                ], use_regex: true))),
                 (kind: Text("\n 󰠃 "), style: (fg: "#7dcfff")),
                 (kind: Property(Song(Artist)), style: (fg: "#7aa2f7"), default: (kind: Text("Unknown"))),
             ],
